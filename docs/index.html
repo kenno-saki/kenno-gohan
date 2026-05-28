@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>賢脳ごはん | 中学受験を食事で支える管理栄養士</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== リセット ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      color: #2A1F0A;
+      background: #FFFCF0;
+      line-height: 1.8;
+      word-break: auto-phrase;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== カラー ===== */
+    :root {
+      --cream:   #FFFCF0;
+      --cream2:  #FFF5DC;
+      --gold:    #C8A830;
+      --gold-lt: #F0D97A;
+      --teal:    #5ABFB0;
+      --teal-dk: #3A9E90;
+      --teal-lt: #B8E8E2;
+      --brown:   #2A1F0A;
+      --brown2:  #6B5030;
+      --peach:   #F0A060;
+      --white:   #FFFFFF;
+    }
+
+    /* ===== ナビ ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,252,240,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--gold-lt);
+    }
+    nav {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--brown); text-decoration: none; letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; color: var(--brown2); text-decoration: none;
+      font-weight: 700; letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ===== ラベルボタン（インスタ風） ===== */
+    .label-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 20px;
+      border-radius: 50px;
+      letter-spacing: 0.08em;
+      box-shadow: 0 3px 0 #9A7C18;
+    }
+    .label-badge.teal {
+      background: var(--teal);
+      box-shadow: 0 3px 0 var(--teal-dk);
+    }
+
+    /* ===== ヒーロー ===== */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #FFF5DC 0%, #FFFCF0 60%);
+      display: flex; align-items: center;
+      padding: 100px 24px 60px;
+      position: relative; overflow: hidden;
+    }
+    /* ドット装飾（ノート風） */
+    #hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle, rgba(200,168,48,0.15) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; position: relative;
+    }
+    .hero-catch-label {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff; font-weight: 800;
+      font-size: 0.8rem; padding: 5px 18px; border-radius: 50px;
+      letter-spacing: 0.1em; margin-bottom: 18px;
+      box-shadow: 0 3px 0 var(--teal-dk);
+    }
+    h1 {
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.4; color: var(--brown);
+      margin-bottom: 20px;
+    }
+    h1 em {
+      font-style: normal; color: var(--gold);
+      background: linear-gradient(180deg, transparent 60%, var(--gold-lt) 60%);
+    }
+    .hero-sub {
+      font-size: 0.95rem; color: var(--brown2);
+      margin-bottom: 36px; line-height: 2.1;
+    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-main {
+      display: inline-block; padding: 14px 32px;
+      background: var(--gold); color: #fff; text-decoration: none;
+      border-radius: 50px; font-size: 0.95rem; font-weight: 800;
+      letter-spacing: 0.05em; box-shadow: 0 4px 0 #9A7C18;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-main:hover { transform: translateY(2px); box-shadow: 0 2px 0 #9A7C18; }
+    .btn-sub {
+      display: inline-block; padding: 14px 32px;
+      background: var(--teal); color: #fff; text-decoration: none;
+      border-radius: 50px; font-size: 0.95rem; font-weight: 800;
+      letter-spacing: 0.05em; box-shadow: 0 4px 0 var(--teal-dk);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-sub:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--teal-dk); }
+
+    /* ヒーロー右カード */
+    .hero-visual { display: flex; flex-direction: column; gap: 16px; }
+    .hero-card {
+      background: #fff;
+      border: 3px solid var(--gold-lt);
+      border-radius: 20px; padding: 24px 28px;
+      box-shadow: 4px 4px 0 var(--gold-lt);
+      position: relative;
+    }
+    .hero-card::before {
+      content: '✨';
+      position: absolute; top: -14px; left: 20px;
+      font-size: 1.5rem;
+    }
+    .hero-card-title {
+      font-size: 0.95rem; font-weight: 800;
+      color: var(--gold); margin-bottom: 12px; letter-spacing: 0.05em;
+    }
+    .hero-card ul { list-style: none; }
+    .hero-card li {
+      font-size: 0.88rem; color: var(--brown2);
+      padding: 5px 0; border-bottom: 1px dashed var(--gold-lt);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .hero-card li:last-child { border-bottom: none; }
+    .hero-card li::before { content: '🌿'; flex-shrink: 0; }
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .badge {
+      background: var(--teal); color: #fff;
+      font-size: 0.78rem; font-weight: 700;
+      padding: 5px 14px; border-radius: 50px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 0 var(--teal-dk);
+    }
+
+    /* ===== セクション共通 ===== */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .sec-label {
+      display: block; text-align: center;
+      font-size: 0.75rem; letter-spacing: 0.25em; font-weight: 800;
+      color: var(--teal); margin-bottom: 8px;
+    }
+    .sec-title {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 800; text-align: center; color: var(--brown);
+      margin-bottom: 10px; line-height: 1.5;
+    }
+    .sec-lead {
+      text-align: center; color: var(--brown2);
+      font-size: 0.93rem; margin-bottom: 48px; line-height: 2.1;
+    }
+    /* ノート罫線風区切り */
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin: 16px auto 36px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; max-width: 80px;
+      height: 2px; background: var(--gold-lt);
+    }
+    .divider-icon { font-size: 1.2rem; }
+
+    /* ===== こんな方へ ===== */
+    #target { background: var(--cream2); }
+    .target-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px;
+    }
+    .target-card {
+      background: #fff; border-radius: 20px; padding: 28px 24px;
+      border: 3px solid var(--gold-lt);
+      box-shadow: 4px 4px 0 var(--gold-lt);
+    }
+    .target-card-icon { font-size: 2rem; margin-bottom: 10px; }
+    .target-card h3 {
+      font-size: 1rem; font-weight: 800; color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .target-card p { font-size: 0.88rem; color: var(--brown2); line-height: 1.9; }
+
+    /* ===== 想い ===== */
+    #about {}
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 56px; align-items: start;
+    }
+    .about-profile-box {
+      background: var(--cream2);
+      border: 3px solid var(--gold-lt); border-radius: 24px;
+      padding: 36px 28px; text-align: center;
+      box-shadow: 4px 4px 0 var(--gold-lt);
+    }
+    .about-icon { font-size: 4rem; margin-bottom: 12px; }
+    .about-name {
+      font-size: 1.1rem; font-weight: 800; color: var(--brown); margin-bottom: 4px;
+    }
+    .about-role { font-size: 0.82rem; color: var(--teal); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .about-badges { display: flex; flex-direction: column; gap: 8px; }
+    .about-badge {
+      background: #fff; border: 2px solid var(--gold-lt); border-radius: 10px;
+      padding: 8px 12px; font-size: 0.82rem; color: var(--brown2); text-align: left;
+    }
+    .about-badge strong { color: var(--gold); }
+    .about-text h2 {
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 800;
+      color: var(--brown); margin-bottom: 24px; line-height: 1.6;
+    }
+    .about-text h2 span { color: var(--teal); }
+    .about-text p { color: var(--brown2); font-size: 0.93rem; line-height: 2.2; margin-bottom: 18px; }
+    blockquote {
+      background: #fff; border: 3px solid var(--gold-lt);
+      border-radius: 16px; padding: 20px 24px; margin: 24px 0;
+      font-weight: 700; font-size: 0.95rem; color: var(--brown);
+      line-height: 1.9; position: relative;
+      box-shadow: 3px 3px 0 var(--gold-lt);
+    }
+    blockquote::before {
+      content: '💬'; position: absolute; top: -14px; left: 16px; font-size: 1.4rem;
+    }
+
+    /* ===== サービス ===== */
+    #services { background: var(--cream2); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 24px;
+    }
+    .service-card {
+      background: #fff; border-radius: 24px; padding: 32px 24px;
+      border: 3px solid var(--teal-lt);
+      box-shadow: 4px 4px 0 var(--teal-lt);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .service-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--teal-lt); }
+    .service-icon-wrap {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--teal-lt); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 16px;
+    }
+    .service-card h3 {
+      font-size: 1rem; font-weight: 800; color: var(--brown);
+      margin-bottom: 10px; line-height: 1.5;
+    }
+    .service-card p { font-size: 0.87rem; color: var(--brown2); line-height: 1.9; margin-bottom: 18px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .s-tag {
+      background: var(--cream2); color: var(--brown2);
+      font-size: 0.75rem; font-weight: 700;
+      padding: 3px 12px; border-radius: 50px; border: 1.5px solid var(--gold-lt);
+    }
+
+    /* ===== メルマガ ===== */
+    #newsletter { background: #fff; }
+    .nl-box {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: var(--cream2); border: 4px solid var(--gold);
+      border-radius: 28px; padding: 48px 40px;
+      box-shadow: 6px 6px 0 var(--gold-lt);
+      position: relative;
+    }
+    .nl-ribbon {
+      position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: #fff; font-size: 0.8rem; font-weight: 800;
+      padding: 6px 28px; border-radius: 50px; letter-spacing: 0.1em;
+      box-shadow: 0 3px 0 #9A7C18;
+      white-space: nowrap;
+    }
+    .nl-box h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 800;
+      color: var(--brown); margin-bottom: 16px; line-height: 1.6;
+    }
+    .nl-box h2 em { font-style: normal; color: var(--gold); }
+    .nl-box p { color: var(--brown2); font-size: 0.93rem; margin-bottom: 28px; line-height: 2.1; }
+    .nl-features {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .nl-feat {
+      background: #fff; border: 2px solid var(--gold-lt); border-radius: 12px;
+      padding: 12px 16px; font-size: 0.85rem; font-weight: 700; color: var(--brown);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* ===== イベント ===== */
+    #events {}
+    .event-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 28px;
+    }
+    .event-card {
+      border-radius: 24px; padding: 32px 28px; position: relative; overflow: hidden;
+      border: 3px solid var(--gold-lt);
+      box-shadow: 4px 4px 0 var(--gold-lt);
+      background: #fff;
+    }
+    .event-card::after {
+      content: '';
+      position: absolute; bottom: 0; right: 0;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle at 100% 100%, var(--teal-lt) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .event-num {
+      display: inline-block;
+      background: var(--gold); color: #fff;
+      font-size: 0.75rem; font-weight: 800;
+      padding: 4px 14px; border-radius: 50px; margin-bottom: 14px;
+      letter-spacing: 0.1em; box-shadow: 0 2px 0 #9A7C18;
+    }
+    .event-card h3 {
+      font-size: 1.05rem; font-weight: 800; color: var(--brown);
+      margin-bottom: 12px; line-height: 1.5;
+    }
+    .event-card p { font-size: 0.87rem; color: var(--brown2); line-height: 1.9; }
+    .event-meta {
+      margin-top: 20px; padding-top: 16px;
+      border-top: 2px dashed var(--gold-lt);
+    }
+    .event-meta dt { font-size: 0.75rem; font-weight: 800; color: var(--teal); letter-spacing: 0.1em; }
+    .event-meta dd { font-size: 0.87rem; color: var(--brown); margin: 2px 0 10px 0; }
+
+    /* ===== お問い合わせ ===== */
+    #contact { background: var(--brown); position: relative; overflow: hidden; }
+    #contact::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+    }
+    .contact-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+    .contact-inner .sec-label { color: var(--teal-lt); }
+    .contact-inner .sec-title { color: #fff; }
+    .contact-inner .sec-lead { color: rgba(255,255,255,0.7); margin-bottom: 40px; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 16px;
+      margin-bottom: 36px;
+    }
+    .contact-opt {
+      background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 28px 20px;
+      color: #fff; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: block;
+    }
+    .contact-opt:hover { background: rgba(255,255,255,0.18); transform: translateY(-3px); }
+    .contact-opt-icon { font-size: 2rem; margin-bottom: 10px; }
+    .contact-opt h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
+    .contact-opt p { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .contact-note { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.9; }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #1A1208;
+      color: rgba(255,255,255,0.4);
+      text-align: center; padding: 28px 24px;
+      font-size: 0.78rem; letter-spacing: 0.05em;
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--gold-lt); }
+
+    /* ===== 写真スタイル ===== */
+    .hero-photo-wrap {
+      position: relative; width: 100%;
+    }
+    .hero-photo {
+      width: 100%; max-width: 380px;
+      border-radius: 24px;
+      border: 4px solid #fff;
+      box-shadow: 6px 6px 0 var(--gold-lt);
+      display: block; object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .hero-photo-badge {
+      position: absolute; bottom: -12px; left: 16px;
+      background: var(--gold); color: #fff;
+      font-size: 0.78rem; font-weight: 800;
+      padding: 6px 16px; border-radius: 50px;
+      box-shadow: 0 3px 0 #9A7C18;
+      letter-spacing: 0.05em;
+    }
+    .profile-photo-wrap {
+      position: relative; margin-bottom: 20px;
+    }
+    .profile-photo {
+      width: 100%; border-radius: 20px;
+      border: 4px solid var(--gold-lt);
+      box-shadow: 4px 4px 0 var(--gold-lt);
+      display: block; object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .service-photo {
+      width: 100%; border-radius: 14px;
+      object-fit: cover; display: block;
+      aspect-ratio: 4/3;
+      margin-bottom: 16px;
+      border: 2px solid var(--teal-lt);
+    }
+    .event-photo {
+      width: 100%; border-radius: 14px;
+      object-fit: cover; display: block;
+      aspect-ratio: 16/9;
+      margin-bottom: 16px;
+      border: 2px solid var(--gold-lt);
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-visual { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 28px; }
+      .nav-links { display: none; }
+      section { padding: 56px 20px; }
+      .nl-box { padding: 48px 24px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header>
+  <nav>
+    <a class="nav-logo" href="#hero">賢<span>脳</span>ごはん</a>
+    <ul class="nav-links">
+      <li><a href="#about">想い</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#newsletter">公式LINE</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== ヒーロー ===== -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-catch-label">賢脳ごはん専門 管理栄養士</span>
+      <h1>食事から、<br>わが子の力を<br><em>引き出したい</em></h1>
+      <p class="hero-sub">
+        こどもの賢脳ごはん専門の管理栄養士として、<br>
+        料理代行・栄養相談・塾ごはんイベント・わくわくキッチンなどの活動をしています。<br>
+        食を通じて、こどもと家族に寄り添うサポートをしています。
+      </p>
+      <div class="hero-buttons">
+        <a class="btn-main" href="#newsletter">🎁 忙しい朝もできる朝食レシピを受け取る</a>
+        <a class="btn-sub"  href="#contact">📝 お問い合わせ</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-wrap">
+        <img class="hero-photo"
+             src="images/profile-consult.jpg"
+             alt="管理栄養士 小今井さき" />
+        <span class="hero-photo-badge">管理栄養士 小今井 さき</span>
+      </div>
+      <div class="badge-row" style="margin-top:24px;">
+        <span class="badge">管理栄養士15年</span>
+        <span class="badge">のべ4万食以上</span>
+        <span class="badge">京都新聞掲載</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== こんな方へ ===== -->
+<section id="target">
+  <div class="section-inner">
+    <span class="sec-label">FOR YOU</span>
+    <h2 class="sec-title">こんなお悩みはありませんか？</h2>
+    <div class="divider"><span class="divider-icon">🌿</span></div>
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-card-icon">😟</div>
+        <h3>頑張っているのに<br>成績が伸びない</h3>
+        <p>塾に通って勉強もしているのに結果が出ない。もしかして、食事が原因かも？と気になりながらも何もできていない。</p>
+      </div>
+      <div class="target-card">
+        <div class="target-card-icon">🤯</div>
+        <h3>ママ自身がもう限界</h3>
+        <p>送り迎え・宿題サポート・お弁当作り……。こどものためにここまでしているのに、誰にも相談できず孤独を感じている。</p>
+      </div>
+      <div class="target-card">
+        <div class="target-card-icon">💡</div>
+        <h3>塾に行っているのに<br>なぜか伸びない…</h3>
+        <p>一生懸命通っているのに集中力が続かない、成績が安定しない。勉強法や塾を変えても変わらないとき、見落としがちなのが「食事」です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 想い ===== -->
+<section id="about">
+  <div class="section-inner">
+    <span class="sec-label">ABOUT</span>
+    <h2 class="sec-title">想い・プロフィール</h2>
+    <div class="divider"><span class="divider-icon">👩‍🍳</span></div>
+    <div class="about-inner">
+      <div class="about-profile-box">
+        <div class="profile-photo-wrap">
+          <img class="profile-photo"
+               src="images/profile-main.jpg"
+               alt="管理栄養士 小今井さき" />
+        </div>
+        <p class="about-name">小今井 さき</p>
+        <p class="about-role">こどもの賢脳ごはん専門 管理栄養士</p>
+        <div class="about-badges">
+          <div class="about-badge">保育園給食・<strong>食育指導9年</strong></div>
+          <div class="about-badge">のべ<strong>4万食以上</strong>の給食提供経験</div>
+          <div class="about-badge">こどもの食育サポート<strong>200名以上</strong></div>
+          <div class="about-badge">放課後デイ<strong>わくわくキッチン</strong>主宰</div>
+          <div class="about-badge"><strong>京都新聞</strong>／毎日元気UP新聞掲載</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>毎日の暮らしから、<br>受験期の家族を<span>笑顔にしたい</span></h2>
+        <p>
+          管理栄養士として15年、さまざまなご家庭の食事に寄り添ってきました。
+          その中で気づいたのは、「食事が変わると、家族の空気が変わる」ということ。
+        </p>
+        <blockquote>
+          「うちの子、集中力がなくて…」「何を食べさせれば成績が上がるの？」<br>
+          そんな声を聞くたびに、頑張っているのに追い詰められていくママの姿を感じていました。<br><br>
+          完璧な食事じゃなくていい。続けられることの方がずっと大切だから。<br>
+          無理なく続けられる方法で、親もこどもも少し楽になれるサポートがしたい。<br>
+          家族が笑顔で食卓を囲んで、ホッとできる時間を作りたい。<br>
+          それが私の願いです。
+        </blockquote>
+        <p>
+          中学受験という特別な時期だからこそ、合格したあとの未来まで見据えて
+          一緒に歩んでいきたいと思っています。
+          ひとりで抱え込まなくて大丈夫。
+        </p>
+        <p>
+          作る時間がない方は<strong>料理代行</strong>、
+          自分でやってあげたいけど何から始めればいいか分からない…という方も、
+          まずはお気軽に<strong>ご相談ください</strong>。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== サービス ===== -->
+<section id="services">
+  <div class="section-inner">
+    <span class="sec-label">SERVICES</span>
+    <h2 class="sec-title">サービス一覧</h2>
+    <div class="divider"><span class="divider-icon">🌿</span></div>
+    <p class="sec-lead">
+      料理代行・栄養相談・塾ごはんイベント・こどもの料理教室――<br>
+      食を通じてご家族に関わる4つの活動をしています。<br>
+      「どれが合うか分からない」方も、まずは公式LINEへどうぞ。
+    </p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <img class="service-photo"
+             src="images/food-osechi.jpg"
+             alt="賢脳ごはんの作り置きおかず" />
+        <div class="service-icon-wrap">🥗</div>
+        <h3>賢脳ごはんの作り置き<br>料理代行サービス</h3>
+        <p>
+          ご家庭に伺い、学習と体調を支える「賢脳おかず」をまとめて調理します。
+          塾のリズムに合わせた献立設計・偏食少食への対応・お弁当補食まで
+          トータルサポート。
+        </p>
+        <div style="background:var(--cream2);border:2px solid var(--gold);border-radius:12px;padding:14px 16px;margin:14px 0;">
+          <div style="font-size:0.72rem;font-weight:800;color:#E84040;letter-spacing:0.05em;margin-bottom:6px;">🌟 初回限定価格（2時間・6〜8品）</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--brown);">¥7,980<span style="font-size:0.8rem;font-weight:400;">（税込）</span></div>
+          <div style="border-top:1px dashed var(--gold-lt);margin:8px 0;"></div>
+          <div style="font-size:0.72rem;color:var(--brown2);">通常 2時間¥10,000 ／ 3時間¥13,000（税込）</div>
+        </div>
+        <div class="service-tags">
+          <span class="s-tag">出張調理</span>
+          <span class="s-tag">作り置き</span>
+          <span class="s-tag">偏食・少食OK</span>
+        </div>
+        <br>
+        <a class="btn-main" href="ryori-daiko.html" style="font-size:0.85rem;padding:10px 22px;">詳細・料金・申し込みはこちら →</a>
+      </div>
+
+      <div class="service-card">
+        <img class="service-photo" src="images/profile-casual.jpg" alt="個別栄養相談" />
+        <div class="service-icon-wrap">📚</div>
+        <h3>個別栄養相談</h3>
+        <p>
+          「うちの子、これしか食べなくて…」「塾のある日の夕食どうすれば？」
+          そんなお悩みを、管理栄養士がマンツーマンで一緒に考えます。
+        </p>
+        <!-- こんな方に -->
+        <div style="background:var(--cream2);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--teal);margin-bottom:8px;letter-spacing:0.05em;">こんな方におすすめ</div>
+          <ul style="list-style:none;font-size:0.85rem;color:var(--brown2);">
+            <li style="padding:3px 0;">🌿 偏食・少食で何を食べさせればいいか分からない</li>
+            <li style="padding:3px 0;">🌿 塾・習い事で食事のリズムが崩れている</li>
+            <li style="padding:3px 0;">🌿 受験期の体調管理・食事に不安がある</li>
+            <li style="padding:3px 0;">🌿 自分で料理したいけど、何から始めればいいか分からない</li>
+          </ul>
+        </div>
+        <div class="service-tags">
+          <span class="s-tag">オンライン可</span>
+          <span class="s-tag">少食・偏食OK</span>
+          <span class="s-tag">受験期対応</span>
+        </div>
+        <!-- 偏食LINEフロー -->
+        <div style="background:var(--cream2);border:2px dashed var(--gold-lt);border-radius:14px;padding:14px 16px;margin:16px 0;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--gold);margin-bottom:10px;letter-spacing:0.05em;">🌿 偏食・少食でお困りの方</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--brown2);flex-wrap:wrap;">
+            <span style="background:var(--teal);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem;flex-shrink:0;">1</span>
+            <span>公式LINEを友だち追加</span>
+            <span style="color:var(--gold-lt);">▶</span>
+            <span style="background:var(--teal);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem;flex-shrink:0;">2</span>
+            <span>「<strong style="color:var(--brown);">偏食</strong>」と送信</span>
+            <span style="color:var(--gold-lt);">▶</span>
+            <span style="background:var(--teal);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem;flex-shrink:0;">3</span>
+            <span>ご相談スタート</span>
+          </div>
+        </div>
+        <a class="btn-sub" href="https://page.line.me/202equsj" target="_blank" rel="noopener" style="font-size:0.85rem;padding:12px 24px;background:#06C755;box-shadow:0 4px 0 #059142;">💚 友だち追加して相談する</a>
+      </div>
+
+      <div class="service-card">
+        <img class="service-photo" src="images/juku-event.jpg" alt="塾ごはんイベント" style="object-fit:contain;background:var(--cream2);" />
+        <div class="service-icon-wrap">🍱</div>
+        <h3>塾ごはんイベント<br>「脳が喜ぶ！受験期の食事術」</h3>
+        <p>
+          塾通いの日でもできる時短ごはんのコツや、勉強前におすすめのおやつの選び方を楽しく学べるイベント。
+          参加者同士でつながれる場としても好評です。
+        </p>
+        <div style="background:var(--cream2);border:2px solid var(--gold-lt);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:0.82rem;color:var(--brown2);">
+          <div style="margin-bottom:4px;">🗓️ <strong style="color:var(--brown);">開催形式：</strong>対面 / オンライン（選択可）</div>
+          <div style="margin-bottom:4px;">👤 <strong style="color:var(--brown);">対象：</strong>中学受験を目指す子を持つ保護者</div>
+          <div>📣 <strong style="color:var(--brown);">最新情報：</strong>Instagram・Threadsで告知中</div>
+        </div>
+        <div class="service-tags">
+          <span class="s-tag">グループ参加</span>
+          <span class="s-tag">時短レシピ</span>
+          <span class="s-tag">受験ママ向け</span>
+        </div>
+        <br>
+        <a class="btn-sub" href="https://www.instagram.com/saki_kenno_gohan/" target="_blank" rel="noopener" style="font-size:0.85rem;padding:10px 22px;">📸 最新情報をInstagramで見る</a>
+      </div>
+
+      <div class="service-card">
+        <img class="service-photo"
+             src="images/wakuwaku-kitchen.jpg"
+             alt="わくわくキッチンの様子" />
+        <div class="service-icon-wrap">👨‍🍳</div>
+        <h3>放課後デイ クッキング<br>「できた！がふえるわくわくキッチン」</h3>
+        <p>
+          放課後デイサービスで月1回開催のクッキング教室。
+          「自分で作れた！」という達成感を積み重ねながら、食べることや料理への興味を育てます。
+        </p>
+        <div style="background:var(--cream2);border:2px solid var(--gold-lt);border-radius:12px;padding:12px 16px;margin:14px 0;font-size:0.82rem;color:var(--brown2);">
+          <div style="margin-bottom:4px;">🗓️ <strong style="color:var(--brown);">頻度：</strong>月1回</div>
+          <div style="margin-bottom:4px;">📍 <strong style="color:var(--brown));">場所：</strong>放課後デイサービス内</div>
+          <div>👤 <strong style="color:var(--brown);">対象：</strong>放課後デイサービス利用のお子さん</div>
+        </div>
+        <div class="service-tags">
+          <span class="s-tag">月1回開催</span>
+          <span class="s-tag">支援が必要な子も</span>
+          <span class="s-tag">達成感重視</span>
+        </div>
+        <br>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <!-- 放課後デイのHPのURLをここに入れてください -->
+          <a class="btn-sub" href="https://rananpono.com/" target="_blank" rel="noopener" style="font-size:0.85rem;padding:10px 22px;">🏠 放課後デイHPを見る</a>
+          <a class="btn-sub" href="#contact" style="font-size:0.85rem;padding:10px 22px;">お問い合わせ</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 公式LINE ===== -->
+<section id="newsletter">
+  <div class="section-inner" style="display:flex;justify-content:center;">
+    <div class="nl-box">
+      <span class="nl-ribbon">🎁 友だち追加で無料プレゼント！</span>
+      <p style="font-size:2.8rem;margin:8px 0 16px;">💚</p>
+      <h2>公式LINEに登録して<br>「<em>【受験】</em>」と送ると<br>朝食レシピをプレゼント！</h2>
+      <p>
+        忙しい朝も安心。<br>
+        管理栄養士が厳選した<strong>「頭が働く！朝食レシピ」</strong>を<br>
+        友だち追加後に<strong style="color:#06C755;">【受験】</strong>と送るだけで受け取れます。<br>
+        試験当日も安心できる、時短でできるレシピ集です。
+      </p>
+      <div class="nl-features">
+        <div class="nl-feat">📖 朝食レシピをプレゼント</div>
+        <div class="nl-feat">⏱️ 忙しい朝でもOK</div>
+        <div class="nl-feat">🧠 栄養素の解説つき</div>
+        <div class="nl-feat">💬 LINEで気軽に相談も</div>
+      </div>
+      <a class="btn-main" href="https://page.line.me/202equsj" target="_blank" rel="noopener"
+         style="font-size:1rem;padding:16px 40px;background:#06C755;box-shadow:0 4px 0 #059142;">
+        💚 友だち追加して【受験】と送る
+      </a>
+
+      <!-- LINEキーワード一覧 -->
+      <div style="margin-top:28px;background:#fff;border:2px solid var(--gold-lt);border-radius:18px;padding:20px 24px;text-align:left;">
+        <p style="font-size:0.82rem;font-weight:800;color:var(--gold);letter-spacing:0.08em;margin-bottom:14px;text-align:center;">
+          💬 友だち追加後、送るキーワードで案内が届きます
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:var(--brown2);">
+            <span style="background:#06C755;color:#fff;font-weight:800;padding:4px 14px;border-radius:50px;white-space:nowrap;">【受験】</span>
+            <span>頭が働く朝食レシピをプレゼント🎁</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:var(--brown2);">
+            <span style="background:var(--gold);color:#fff;font-weight:800;padding:4px 14px;border-radius:50px;white-space:nowrap;">【偏食】</span>
+            <span>偏食・少食のお悩み相談へ</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:var(--brown2);">
+            <span style="background:var(--gold);color:#fff;font-weight:800;padding:4px 14px;border-radius:50px;white-space:nowrap;">【代行】</span>
+            <span>料理代行の申し込みフォームが届きます</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:16px;font-size:0.78rem;color:var(--brown2);">
+        ※ LINEアプリが開きます。登録は無料です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お問い合わせ ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <span class="sec-label">CONTACT</span>
+      <h2 class="sec-title">お問い合わせ</h2>
+      <div class="divider" style="--gold-lt:rgba(255,255,255,0.2);">
+        <span class="divider-icon" style="color:rgba(255,255,255,0.5);">🌿</span>
+      </div>
+      <p class="sec-lead">
+        料理代行・イベント参加・個別相談など、<br>
+        どんな小さなご相談もお気軽にどうぞ。<br>
+        ひとりで悩まないでください。
+      </p>
+      <div class="contact-grid">
+        <a class="contact-opt" href="https://docs.google.com/forms/d/e/1FAIpQLSclA2ynzy6BuNy4eYLfA-Nqwti7w5MYOoqCBU1_sqmlwkfUFA/viewform" target="_blank" rel="noopener">
+          <div class="contact-opt-icon">📝</div>
+          <h3>お問い合わせフォーム</h3>
+          <p>サービスの詳細・料金・日程など、何でもお気軽にどうぞ</p>
+        </a>
+        <a class="contact-opt" href="https://page.line.me/202equsj" target="_blank" rel="noopener"
+           style="border-color:rgba(6,199,85,0.4);">
+          <div class="contact-opt-icon">🥗</div>
+          <h3>料理代行 お申し込み</h3>
+          <p>友だち追加後に <strong style="color:#06C755;">【代行】</strong> と送ると申し込みフォームが届きます</p>
+        </a>
+        <a class="contact-opt" href="https://page.line.me/202equsj" target="_blank" rel="noopener"
+           style="border-color:rgba(6,199,85,0.4);">
+          <div class="contact-opt-icon">💚</div>
+          <h3>公式LINEで相談</h3>
+          <p>友だち追加後に <strong style="color:#06C755;">【受験】</strong> と送ると朝食レシピが届きます🎁</p>
+        </a>
+      </div>
+      <p class="contact-note">
+        ※ お返事は通常2〜3営業日以内にご連絡いたします。<br>
+        お急ぎの方は公式LINEにてご連絡ください。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <p style="margin-bottom:8px;">
+    <a href="#hero">賢脳ごはん</a> &nbsp;|&nbsp;
+    <a href="#about">想い</a> &nbsp;|&nbsp;
+    <a href="#services">サービス</a> &nbsp;|&nbsp;
+    <a href="#newsletter">公式LINE</a> &nbsp;|&nbsp;
+    <a href="#contact">お問い合わせ</a>
+  </p>
+  <p>&copy; 2024 賢脳ごはん ／ 管理栄養士 小今井さき All rights reserved.</p>
+</footer>
+
+</body>
+</html>
